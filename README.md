@@ -1,4 +1,8 @@
-# Your Plugin Name
+# nativescript-http2
+
+HTTP/2 client support for nativescript android and iOS 
+
+_Not created using nativescript-plugin-seed, which appears outdated and broken at the time of this developement.  Using my own plugin folder structure instead_
 
 Add your plugin badges here. See [nativescript-urlhandler](https://github.com/hypery2k/nativescript-urlhandler) for example.
 
