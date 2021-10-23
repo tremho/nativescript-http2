@@ -1,10 +1,5 @@
 matrix:
   include:
-    - stage: "Lint"
-      language: node_js
-      os: linux
-      node_js: "8"
-      script: cd src && npm run ci.tslint && cd ../demo && npm run ci.tslint
     - stage: "WebPack, Build and Test"
       os: osx
       env:
