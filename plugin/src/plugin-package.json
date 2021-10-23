@@ -1,0 +1,10 @@
+{
+  "name": "@tremho/nativescript-http2",
+  "version": "1.0.0",
+  "nativescript": {
+    "platforms": {
+      "ios": "8.0.0",
+      "android": "8.0.0"
+    }
+  }
+}

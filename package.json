@@ -1,0 +1,26 @@
+{
+  "name": "nativescript-http2",
+  "version": "0.0.1-prelease.1",
+  "author" : "tremho",
+  "copyright": "© 2021 Tremho Berserker Development, LLC.",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -fr build && rm -f plugin/dist/*.tgz && rm -fr node_modules && rm -f package-lock.json && npm install",
+    "build": "tsc && cp plugin/src/plugin-package.json build/package.json && tsc -d plugin/src/index.ts --declarationDir build --target ES2015 --module commonjs",
+    "package": "npm run build && tar -czf plugin/dist/nativescript-http2.tgz build",
+    "pre-start": "npm run clean && npm run package && cd demo && rm -fr node_modules && rm -f package-lock.json && npm install",
+    "start-android": "npm run pre-start && cd demo && npm run android",
+    "start-ios": "npm run pre-start && cd demo && npm run ios"
+  },
+  "dependencies": {
+    "@nativescript/core": "~8.0.0",
+    "@nativescript/theme": "~3.0.1"
+  },
+  "devDependencies": {
+    "@nativescript/android": "8.0.0",
+    "@nativescript/ios": "8.0.0",
+    "@nativescript/types": "~8.0.0",
+    "@nativescript/webpack": "beta",
+    "typescript": "~4.0.0"
+  }
+}
