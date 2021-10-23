@@ -1,4 +1,4 @@
-import { Observable } from 'tns-core-modules/data/observable';
+import { Observable } from '@nativescript/core';
 import { Http2 } from 'nativescript-http2';
 
 export class HelloWorldModel extends Observable {
