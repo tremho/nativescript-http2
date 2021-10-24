@@ -10,7 +10,8 @@
     "package": "npm run build && tar -czf plugin/dist/nativescript-http2.tgz build",
     "pre-start": "npm run clean && npm run package && cd demo && rm -fr node_modules && rm -f package-lock.json && npm install",
     "start-android": "npm run pre-start && cd demo && npm run android",
-    "start-ios": "npm run pre-start && cd demo && npm run ios"
+    "start-ios": "npm run pre-start && cd demo && npm run ios",
+    "test": "echo no test defined"
   },
   "dependencies": {
     "@nativescript/core": "~8.0.0",
