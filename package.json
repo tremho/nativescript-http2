@@ -11,7 +11,7 @@
     "pre-start": "npm run clean && npm run package && cd demo && rm -fr node_modules && rm -f package-lock.json && npm install",
     "start-android": "npm run pre-start && cd demo && npm run android",
     "start-ios": "npm run pre-start && cd demo && npm run ios",
-    "test": "npm run clean && echo test completed"
+    "test": "npm run package && echo test completed"
   },
   "dependencies": {
     "@nativescript/core": "~8.0.0",
