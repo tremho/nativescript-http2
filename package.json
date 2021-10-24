@@ -7,11 +7,11 @@
   "scripts": {
     "clean": "rm -fr build && rm -f plugin/dist/*.tgz && rm -fr node_modules && rm -f package-lock.json && npm install",
     "build": "tsc && cp plugin/src/plugin-package.json build/package.json && tsc -d plugin/src/index.ts --declarationDir build --target ES2015 --module commonjs",
-    "package": "npm run build && tar -czf plugin/dist/nativescript-http2.tgz build",
+    "package": "npm run build && mkdirp plugin/dist && tar -czf plugin/dist/nativescript-http2.tgz build",
     "pre-start": "npm run clean && npm run package && cd demo && rm -fr node_modules && rm -f package-lock.json && npm install",
     "start-android": "npm run pre-start && cd demo && npm run android",
     "start-ios": "npm run pre-start && cd demo && npm run ios",
-    "test": "npm run build && mkdirp plugin/dist tar czf plugin/dist/nativescript-http2.tgz build && echo test completed"
+    "test": "npm run package && echo test completed"
   },
   "dependencies": {
     "@nativescript/core": "~8.0.0",
