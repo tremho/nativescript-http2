@@ -61,7 +61,7 @@ class LocalClientHttp2Session extends ClientHttp2Session {
         delete headers[":path:"]
         const url = NSURL.URLWithString(path)
         const nsRequest = NSMutableURLRequest.requestWithURL(url)
-        for(let k of headers) {
+        for(let k of Object.getOwnPropertyNames(headers)) {
             let v = headers[k]
             nsRequest.addValueForHTTPHeaderField(k,v)
         }
