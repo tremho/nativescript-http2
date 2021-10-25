@@ -22,5 +22,8 @@ export class PluginTesterModel extends Observable {
   onTap() {
     this.message = pluginId()
   }
+  testPlugin() {
+
+  }
 
 }
