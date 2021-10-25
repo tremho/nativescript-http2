@@ -11,7 +11,7 @@
  */
 export class Http2Base {
 
-    connect(authority:string, options:Http2ConnectOptions, listener:any):ClientHttp2Session {
+    connect(authority:string, options?:Http2ConnectOptions, listener?:any):ClientHttp2Session {
         console.log('Http2Base connect returns empty session')
         return new ClientHttp2Session()
     }
@@ -77,7 +77,7 @@ export class Http2Settings {
 
 export class ClientHttp2Session {
 
-    request(headers: object, options:SessionRequestOptions):ClientHttp2Stream {
+    request(headers: object, options?:SessionRequestOptions):ClientHttp2Stream {
         console.log('Base version of ClientHttp2Session returns empty stream')
         return new ClientHttp2Stream()
     }
