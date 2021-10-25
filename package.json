@@ -9,8 +9,8 @@
     "build": "tsc && cp plugin/src/plugin-package.json build/package.json && tsc -d plugin/src/index.ts --declarationDir build --target ES2015 --module commonjs",
     "package": "npm run build && mkdirp plugin/dist && tar -czf plugin/dist/nativescript-http2.tgz build",
     "pre-start": "npm run clean && npm run package && cd demo && rm -fr node_modules && rm -f package-lock.json && npm install",
-    "start-android": "npm run pre-start && cd demo && npm run android",
-    "start-ios": "npm run pre-start && cd demo && npm run ios",
+    "start-android": "npm run pre-start && cd demo && ns run android --device large",
+    "start-ios": "npm run pre-start && cd demo && ns run ios --device large",
     "ci-android": "npm run pre-start && cd demo; ls -l; cat webpack.config.js; ns build android",
     "ci-ios": "npm run pre-start && cd demo; ls -l; cat webpack.config.js; ns build ios"
   },
