@@ -77,7 +77,7 @@ export class Http2Settings {
 
 export class ClientHttp2Session {
 
-    request(headers: object, options?:SessionRequestOptions):ClientHttp2Stream {
+    request(headers: any, options?:SessionRequestOptions):ClientHttp2Stream {
         console.log('Base version of ClientHttp2Session returns empty stream')
         return new ClientHttp2Stream()
     }

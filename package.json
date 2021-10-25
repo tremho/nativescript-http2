@@ -1,7 +1,7 @@
 {
   "name": "nativescript-http2",
   "version": "0.0.1-prelease.1",
-  "author" : "tremho",
+  "author": "tremho",
   "copyright": "© 2021 Tremho Berserker Development, LLC.",
   "license": "MIT",
   "scripts": {
@@ -11,8 +11,8 @@
     "pre-start": "npm run clean && npm run package && cd demo && rm -fr node_modules && rm -f package-lock.json && npm install",
     "start-android": "npm run pre-start && cd demo && npm run android",
     "start-ios": "npm run pre-start && cd demo && npm run ios",
-    "ci-android": "npm run pre-start && cd demo; ns build android",
-    "ci-ios": "npm run pre-start && cd demo; ls -l; cat webpack.configgit s.js; ns build ios"
+    "ci-android": "npm run pre-start && cd demo; ls -l; cat webpack.config.js; ns build android",
+    "ci-ios": "npm run pre-start && cd demo; ls -l; cat webpack.config.js; ns build ios"
   },
   "dependencies": {
     "@nativescript/core": "~8.0.0",
@@ -23,6 +23,7 @@
     "@nativescript/ios": "8.0.0",
     "@nativescript/types": "~8.0.0",
     "@nativescript/webpack": "beta",
+    "tns-platform-declarations": "^6.5.15",
     "typescript": "~4.0.0"
   }
 }
