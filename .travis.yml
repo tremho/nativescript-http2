@@ -69,7 +69,7 @@ before_install:
   - sudo pip install six
 
 install:
-  - make get-deps
+#  - make get-deps
   - echo no | npm install -g nativescript
   - tns usage-reporting disable
   - tns error-reporting disable
