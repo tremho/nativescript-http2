@@ -45,6 +45,8 @@ matrix:
         - emulator -avd test -no-audio -no-window &
         - android-wait-for-emulator
       before_install:
+        - make get-deps
+        - sudo apt-get install libstdc++6
         - nvm install stable
       script: npm run ci-android && npm run start-android
 #    - os: osx
@@ -64,7 +66,6 @@ android:
     - sys-img-armeabi-v7a-android-21
 
 before_install:
-  - make get-deps
   - sudo easy_install pip
   - sudo pip install --upgrade pip
   - sudo pip install six
