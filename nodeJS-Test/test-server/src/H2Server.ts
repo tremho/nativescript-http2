@@ -53,7 +53,7 @@ export class H2Server {
     // handle an incoming request
     handleStream(stream:any, headers:any) {
         const chunks:string[] = []
-        if(stream.closed) return
+        if(stream.closed) return this.handleClose()
 
         if(headers[":path"] === '/test') {
             console.log('creating downstream')

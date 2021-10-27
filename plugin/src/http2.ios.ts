@@ -71,13 +71,13 @@ class LocalClientHttp2Session extends ClientHttp2Session {
                 stream.handleEvent('error', error)
             }
             if(response) {
-                console.log('response received in request completion handler', response)
+                // console.log('response received in request completion handler', response)
                 const hresp:NSHTTPURLResponse = (response as NSHTTPURLResponse)
                 const headers = hresp.allHeaderFields
                 const headObj:any = {}
                 for(let k of headers.allKeys) {
                     let v = headers.objectForKeyedSubscript(k)
-                    console.log ('header in ', k, v)
+                    // console.log ('header in ', k, v)
                     headObj[k] = v
                 }
                 stream.handleEvent('response', headObj)

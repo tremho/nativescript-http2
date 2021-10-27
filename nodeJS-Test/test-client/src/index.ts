@@ -1,7 +1,7 @@
 
 import {H2Client} from "./H2Client";
 
-const client = new H2Client()
+const client = new H2Client('http://localhost:51610')
 
 
 function wait(time:number) {

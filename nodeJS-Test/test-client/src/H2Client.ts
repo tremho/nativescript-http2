@@ -7,8 +7,8 @@ export class H2Client {
     line:string = ''
     directives: string[] = []
 
-    constructor() {
-        this.session = http2.connect("http://localhost:51610")
+    constructor(authority:string) {
+        this.session = http2.connect(authority)
         this.session.on('error', (err:Error) => {this.handleError(err)})
     }
 
