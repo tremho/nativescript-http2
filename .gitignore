@@ -9,5 +9,6 @@ demo/package-lock.json
 demo/node_modules
 demo/platforms
 demo/hooks
+demo/app/host.js
 plugin/dist
 node_modules
