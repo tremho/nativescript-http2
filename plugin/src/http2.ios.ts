@@ -41,50 +41,54 @@ export class Http2 extends Http2Base {
         nsSession.delegate.URLSessionDidReceiveChallengeCompletionHandler = (session, challenge, completionHandler:any) => {
             console.log('URLSessionDidReceiveChallengeCompletionHandler', session, challenge, completionHandler)
         }
-        const url = NSURL.URLWithString(authority)
-        const task = nsSession.dataTaskWithURL(url)
-        return new LocalClientHttp2Session(nsSession, task)
+        return new LocalClientHttp2Session(nsSession, authority)
     }
 }
 
 class LocalClientHttp2Session extends ClientHttp2Session {
     private session:NSURLSession
+    private authority:string  // must include protocol
 
-    constructor(nsession:NSURLSession, dtask:NSURLSessionDataTask) {
+    constructor(nsession:NSURLSession, authority:string) {
         super()
         this.session = nsession
-        dtask.response
+        this.authority = authority
     }
     request(headers: any, options?:SessionRequestOptions):ClientHttp2Stream {
         console.log('ios clientHttp2Session request', headers)
         const path = headers[":path:"]
         delete headers[":path:"]
-        const url = NSURL.URLWithString(path)
+        const url = NSURL.URLWithString(this.authority+path)
         const nsRequest = NSMutableURLRequest.requestWithURL(url)
         for(let k of Object.getOwnPropertyNames(headers)) {
             let v = headers[k]
             nsRequest.addValueForHTTPHeaderField(k,v)
         }
-        const task = this.session.dataTaskWithRequest(nsRequest)
-        return new LocalClientHttp2Stream(task)
+        const stream = new ClientHttp2Stream()
+        const task = this.session.dataTaskWithRequestCompletionHandler(nsRequest, (data, response, error) => {
+            if(error) {
+                // console.log('error received in request completion handler', error)
+                stream.handleEvent('error', error)
+            }
+            if(response) {
+                console.log('response received in request completion handler', response)
+                const hresp:NSHTTPURLResponse = (response as NSHTTPURLResponse)
+                const headers = hresp.allHeaderFields
+                const headObj:any = {}
+                for(let k of headers.allKeys) {
+                    let v = headers.objectForKeyedSubscript(k)
+                    console.log ('header in ', k, v)
+                    headObj[k] = v
+                }
+                stream.handleEvent('response', headObj)
+            }
+            if(data) {
+                // console.log('data received in request completion hander', data)
+                const str = NSString.stringWithCString(data.bytes)
+                stream.handleEvent('data', str)
+            }
+        })
+        task.resume()
+        return stream
     }
-}
-
-class LocalClientHttp2Stream extends ClientHttp2Stream {
-    private dataTask:NSURLSessionDataTask
-
-    constructor(dtask:NSURLSessionDataTask) {
-        super()
-        this.dataTask = dtask
-        const hresp:NSHTTPURLResponse = (dtask.response as NSHTTPURLResponse)
-        console.log('dtask.error', dtask.error)
-        this.on('response', hresp.allHeaderFields)
-
-    }
-
-    handleEvent(event: string, eventData: any) {
-        console.log('ios sees event', event, eventData)
-        super.handleEvent(event, eventData);
-    }
-
 }

@@ -26,10 +26,11 @@ export class PluginTesterModel extends Observable {
   testPlugin() {
     const http2 = new Http2()
     const session = http2.connect('https://www.google.com')
-    const request = session.request({":path:": '/'})
+    const request = session.request({":path:": '/index.html'})
     // request.setEncoding('utf8')
     request.on('response', handleResponse)
     request.on('data', handleData)
+    request.on('error', handleError)
   }
 }
 function handleResponse(headers:string[]) {
@@ -41,4 +42,7 @@ function handleResponse(headers:string[]) {
 }
 function handleData(data:any) {
   console.log('data chunk', data)
+}
+function handleError(error:any) {
+  console.error('ERROR', error)
 }

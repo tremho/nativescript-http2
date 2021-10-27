@@ -12,7 +12,10 @@
     "start-android": "npm run pre-start && cd demo && ns run android --device large",
     "start-ios": "npm run pre-start && cd demo && ns run ios --device large",
     "ci-android": "npm run pre-start && cd demo; ls -l; cat webpack.config.js; ns build android",
-    "ci-ios": "npm run pre-start && cd demo; ls -l; cat webpack.config.js; ns build ios"
+    "ci-ios": "npm run pre-start && cd demo; ls -l; cat webpack.config.js; ns build ios",
+    "start-test-server" : "cd nodeJS-Test/test-server && npm run run &",
+    "run-test-client" : "cd nodeJS-Test/test-client && npm run run",
+    "node-test" : "npm run start-test-server && npm run run-test-client"
   },
   "dependencies": {
     "@nativescript/core": "~8.0.0",

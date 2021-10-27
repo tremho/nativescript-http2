@@ -89,9 +89,11 @@ class ClientHttp2Stream {
     }
     on(event, callback) {
         this.eventHandler[event] = callback;
+        console.log('eventhandler for ' + event + ' registered', this.eventHandler);
     }
     handleEvent(event, eventData) {
         const fn = this.eventHandler[event];
+        // console.log('handling event for ',event, fn)
         if (fn)
             fn(eventData);
     }
